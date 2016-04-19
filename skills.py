@@ -224,23 +224,28 @@ def get_sum_zero_pairs(input_list):
 
     """
 
-    input_dict = {}
-    sorted_input_list = sorted(input_list)
+    sorted_input_list = set(sorted(input_list))
+    zero_sum_pairs = []
 
     for numbers in sorted_input_list:
-        key = numbers
-
         if (-numbers) in sorted_input_list:
-            value = -numbers
-        else:
-            value = None
+            zero_sum_pairs.append(numbers)
 
-        if key not in input_dict:
-            input_dict[key] = []
+        new_list = [i for i in zero_sum_pairs if i >= 0]
 
-        input_dict[key].append(value)
 
-    return input_dict.items()
+    new_dict = {}
+    for items in new_list:
+        key = items
+        value = -items
+
+        if key not in new_dict:
+            new_dict[key] = []
+
+        new_dict[key].append(value)
+
+    return new_dict
+       
 
 
 
