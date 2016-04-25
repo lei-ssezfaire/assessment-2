@@ -36,6 +36,7 @@ def without_duplicates(words):
 
     words = list(set(words))
     return words
+    #can cut out "words" variable and just return the list
 
 
 def find_unique_common_items(list1, list2):
@@ -65,6 +66,7 @@ def find_unique_common_items(list1, list2):
     """
 
     return list(set(list1).intersection(list2))
+    #can use '&' instead of 'intersection'
 
 
 def count_unique(input_string):
@@ -153,7 +155,7 @@ def translate_to_pirate_talk(phrase):
     'is': 'be',
     'man': 'matey'   
 
-    }
+    }#make sure to indent key-value pairs in a library
 
     untranslated_phrase = phrase.split()
     translated_phrase = []
@@ -163,6 +165,8 @@ def translate_to_pirate_talk(phrase):
         translated_phrase.append(translation if translation else words)
 
     return ' '.join(translated_phrase)
+    #can condense even further
+    #return " ".join([en_to_pirate.get(w, w) for w in phrase.split()])
 
 
 def sort_by_word_length(words):
@@ -194,6 +198,17 @@ def sort_by_word_length(words):
 
     return word_dict.items()
 
+    #can use .setdefault() to set a default key
+    #always think about how your code can be condensed
+    #.items returns list of dict's key, value tuple pairs
+    # d = {}
+
+    # for w in words:
+    #     d.setdefault(len(w), []).append(w)
+
+    # return sorted(d.items())
+
+
 
 def get_sum_zero_pairs(input_list):
     """Given list of numbers, return list of pair summing to 0.
@@ -224,27 +239,32 @@ def get_sum_zero_pairs(input_list):
 
     """
 
-    sorted_input_list = set(sorted(input_list))
+    input_list = set(input_list)
     zero_sum_pairs = []
 
-    for numbers in sorted_input_list:
-        if (-numbers) in sorted_input_list:
-            zero_sum_pairs.append(numbers)
+    for number in input_list:
+        if number >=0 and -number in input_list: 
+            zero_sum_pairs.append([number, -number])
 
-        new_list = [i for i in zero_sum_pairs if i >= 0]
+    return zero_sum_pairs
 
 
-    new_dict = {}
-    for items in new_list:
-        key = items
-        value = -items
 
-        if key not in new_dict:
-            new_dict[key] = []
 
-        new_dict[key].append(value)
 
-    return new_dict
+
+    # result = []
+    # s = set(input_list)
+
+    # for x in s:
+    #     if x >=0 and -x in s:
+    #         result.append([-x,x])
+
+    # return result
+
+
+    #key note: append is flixible. does not have to be just one value
+    #to use multiple values, put them in BRACKETS
        
 
 
